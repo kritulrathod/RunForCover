@@ -16,6 +16,6 @@ set "fullstamp=%YYYY%-%MM%-%DD%_%HH%-%Min%-%Sec%"
 %AppDrive%
 CD %CodeCoverage%
 
-"%CodeCoverage%\OpenCover.4.5.3522\OpenCover.Console.exe" -register:user -target:"%VSTestPath%" -targetargs:".\..\Probench\ProbenchTests\bin\Debug\ProbenchTests.dll /TESTS:PRISectionSubmissionFeature_Config_CT" -output:"%CodeCoverage%\OpenCover.4.5.3522\cover\coverage%fullstamp%.xml"
+"%CodeCoverage%\RunForCover\OpenCover.4.5.3522\OpenCover.Console.exe" -register:user -target:"%VSTestPath%" -targetargs:".\..\Probench\ProbenchTests\bin\Debug\ProbenchTests.dll /TESTS:PRISectionSubmissionFeature_Config_CT" -output:"%CodeCoverage%\RunForCover\OpenCover.4.5.3522\cover\coverage%fullstamp%.xml"
 
-"%CodeCoverage%\ReportGenerator.2.0.4.0\ReportGenerator.exe" -reports:"%CodeCoverage%\OpenCover.4.5.3522\cover\coverage%fullstamp%.xml" -targetdir:"%CodeCoverage%\ReportGenerator.2.0.4.0\report\%fullstamp%_report" -reporttypes:Html -Verbosity:Verbose
+"%CodeCoverage%\RunForCover\ReportGenerator.2.0.4.0\ReportGenerator.exe" -reports:"%CodeCoverage%\RunForCover\OpenCover.4.5.3522\cover\coverage%fullstamp%.xml" -targetdir:"%CodeCoverage%\RunForCover\ReportGenerator.2.0.4.0\report\%fullstamp%_report" -reporttypes:Html -Verbosity:Verbose
