@@ -16,7 +16,22 @@ set "fullstamp=%YYYY%-%MM%-%DD%_%HH%-%Min%-%Sec%"
 %AppDrive%
 CD %CodeCoverage%
 
+REM RMDIR /S/Q .\Report\
+REM MKDIR .\Report\
+DEL /F/Q/S .\Report\*.* > NUL
+
+MKDIR .\RunForCover\ReportGenerator.2.0.4.0\report\
+
 REM "%CodeCoverage%\RunForCover\OpenCover.4.5.3522\OpenCover.Console.exe" -register:user -target:"%VSTestPath%" -targetargs:".\..\Probench\ProbenchTests\bin\Debug\ProbenchTests.dll /TESTS:PRISectionSubmissionFeature_Config_CT" -output:"%CodeCoverage%\RunForCover\OpenCover.4.5.3522\cover\coverage%fullstamp%.xml"
+
+REM Run Tests
 "%CodeCoverage%\RunForCover\OpenCover.4.5.3522\OpenCover.Console.exe" -register:user -target:"%VSTestPath%" -targetargs:".\..\Probench\ProbenchTests\bin\Debug\ProbenchTests.dll" -output:"%CodeCoverage%\RunForCover\OpenCover.4.5.3522\cover\coverage%fullstamp%.xml"
 
-"%CodeCoverage%\RunForCover\ReportGenerator.2.0.4.0\ReportGenerator.exe" -reports:"%CodeCoverage%\RunForCover\OpenCover.4.5.3522\cover\coverage%fullstamp%.xml" -targetdir:"%CodeCoverage%\RunForCover\ReportGenerator.2.0.4.0\report\%fullstamp%_report" -reporttypes:Html -Verbosity:Verbose
+REM Generat Report
+"%CodeCoverage%\RunForCover\ReportGenerator.2.0.4.0\ReportGenerator.exe" -reports:"%CodeCoverage%\RunForCover\OpenCover.4.5.3522\cover\coverage%fullstamp%.xml" -targetdir:"%CodeCoverage%\RunForCover\ReportGenerator.2.0.4.0\report\%fullstamp%_report" -reporttypes:Html -Verbosity:Verbose > NUL
+
+XCOPY /S/Y runForCover\ReportGenerator.2.0.4.0\report\%fullstamp%_report .\Report > NUL
+XCOPY /S/Y runForCover\ReportGenerator.2.0.4.0\report .\Archieve > NUL
+
+RMDIR /S/Q RunForCover\ReportGenerator.2.0.4.0\report\
+REM RMDIR /S/Q .\Report\
